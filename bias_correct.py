@@ -121,8 +121,8 @@ class BiasCorrectDaily():
                        dims=['time', 'y', 'x'])
         dr.attrs['gridtype'] = 'latlon'
         ds = xray.Dataset({'bias_corrected': dr}) 
-        ds = ds.reindex_like(modeled)
-        modeled = modeled.merge(ds) # merging aids in preserving netcdf structure
+        ds = ds.reindex_like(modeled_future)
+        modeled_future = modeled_future.merge(ds) # merging aids in preserving netcdf structure
         # delete modeled variable to save space
-        del modeled[modeled_var]
-        return modeled
+        del modeled_future[modeled_var]
+        return modeled_future
