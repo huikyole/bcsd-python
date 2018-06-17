@@ -19,7 +19,7 @@ class QMap():
             raise ValueError("Axis should be None or 0")
         self.axis = axis
         steps = np.arange(self.step, 100, self.step)
-        self.x_map = np.nanpercentile(x[x<1000.], steps, axis=axis)
+        self.x_map = np.nanpercentile(x, steps, axis=axis)
         self.y_map = np.nanpercentile(y, steps, axis=axis)
         self.z_map = np.nanpercentile(y, steps, axis=axis)
         #self.y_bias_map = self.y_map - self.x_map # (biases in percentiles)
