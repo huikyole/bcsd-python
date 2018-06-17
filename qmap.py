@@ -25,7 +25,7 @@ class QMap():
         #self.y_bias_map = self.y_map - self.x_map # (biases in percentiles)
         self.x_to_y_ratio_map = np.zeros(self.x_map.shape)
         self.x_to_y_ratio_map[self.y_map!=0] = self.x_map[self.y_map!=0]/self.y_map[self.y_map!=0]
-        self.x_to_y_ratio_map[self.x_map>1.e+5] = np.nan
+        self.x_to_y_ratio_map[self.x_map<-900.] = np.nan
         return self
 
     def predict(self, z):

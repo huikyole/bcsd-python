@@ -106,7 +106,8 @@ class BiasCorrectDaily():
             jobs = [] # list to collect jobs
             for iy in np.arange(obs.dims['y']):
                 X_lat = subobs.sel(y=iy, method='nearest')[obs_var].values
-                X_lat = ma.masked_where(X_lat > 1.e+5, X_lat)
+                X_lat = ma.masked_where(X_lat > 1.e+3, X_lat)
+                X_lat = ma.filled(X_lat, -9999.)
                 Y_lat = submodeled_present.sel(y=iy)[modeled_var].values
                 Z_lat = submodeled_future.sel(y=iy)[modeled_var].values
                 jobs.append(delayed(mapper)(X_lat, Y_lat, Z_lat, train_num, self.step))
