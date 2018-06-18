@@ -2,10 +2,11 @@ case_name: BC_pr_SAM_RCA4_using_TRMM
 
 # Data files
 data:
-    directory: /home/ubuntu/statistical_downscaling/CORDEX_CAM_data/
-    fobserved: TRMM_regridded_RCA4_SAM-44.nc
+    directory: /home/ubuntu/RCMES/CORDEX_CAM_data/
+    fobserved: TRMM_regridded_RegCM4-3_CAM-44.nc
     observed_varname: TRMM_daily_pr
     fmodeled_present: pr_CAM-44_MPI-M-MPI-ESM-MR_historical_r1i1p1_ICTP-RegCM4-3_v4_day_19980101-20131231.nc
+    #fmodeled_future: pr_CAM-44_MPI-M-MPI-ESM-MR_historical_r1i1p1_ICTP-RegCM4-3_v4_day_19980101-20131231.nc
     #fmodeled_future: pr_CAM-44_MPI-M-MPI-ESM-MR_rcp85_r1i1p1_ICTP-RegCM4-3_v4_day_20500101-20651231.nc
     fmodeled_future: pr_CAM-44_MPI-M-MPI-ESM-MR_rcp85_r1i1p1_ICTP-RegCM4-3_v4_day_20830101-20991231.nc
     modeled_varname: pr

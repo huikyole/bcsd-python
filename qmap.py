@@ -22,10 +22,10 @@ class QMap():
         self.x_map = np.nanpercentile(x, steps, axis=axis)
         self.y_map = np.nanpercentile(y, steps, axis=axis)
         self.z_map = np.nanpercentile(y, steps, axis=axis)
-        #self.y_bias_map = self.y_map - self.x_map # (biases in percentiles)
-        self.x_to_y_ratio_map = np.zeros(self.x_map.shape)
-        self.x_to_y_ratio_map[self.y_map!=0] = self.x_map[self.y_map!=0]/self.y_map[self.y_map!=0]
-        self.x_to_y_ratio_map[self.x_map<-900.] = np.nan
+        self.y_bias_map = self.y_map - self.x_map # (biases in percentiles)
+        #self.x_to_y_ratio_map = np.zeros(self.x_map.shape)
+        #self.x_to_y_ratio_map[self.y_map!=0] = self.x_map[self.y_map!=0]/self.y_map[self.y_map!=0]
+        #self.x_to_y_ratio_map[self.x_map<-900.] = np.nan
         return self
 
     def predict(self, z):
@@ -35,9 +35,11 @@ class QMap():
             out = np.zeros(z.shape)
             for it in np.arange(nt):
                 for ix in np.arange(nx):
-                    out[it,ix] = self.x_to_y_ratio_map[idx[it][ix],ix]*z[it,ix] 
+                    out[it,ix] = z[it,ix] - self.y_bias_map[idx[it][ix],ix] 
         else:
-            out = self.x_to_y_ratio_map[idx]*z
+            out = z - self.y_bias_map[idx]
+        out[out < 0.] = 0.
+        out[out > 1000.] = np.nan       
         return out
 
 def test_qmap():
