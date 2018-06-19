@@ -41,7 +41,7 @@ class BiasCorrectDaily():
         self.max_train_year = max_train_year
         self.step = step
 
-    def bias_correction(self, obs, modeled_present, modeled_future, obs_var, modeled_var, njobs=-1):
+    def bias_correction(self, obs, modeled_present, modeled_future, obs_var, modeled_var, njobs=-2):
         """
         Parameters
         ---------------------------------------------------------------
